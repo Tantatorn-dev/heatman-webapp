@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { XYPlot, XAxis, YAxis, LineSeries,VerticalGridLines,HorizontalGridLines } from "react-vis";
 import { CardContent, Card, createStyles, Theme, WithStyles, withStyles, Typography, Grid } from '@material-ui/core';
+import SwipeableViews from 'react-swipeable-views';
 
 const styles = (theme: Theme) => createStyles({
     chart: {
