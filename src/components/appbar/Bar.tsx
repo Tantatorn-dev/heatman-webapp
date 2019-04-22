@@ -6,6 +6,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import SettingsIcon from '@material-ui/icons/Settings';
+import SettingDialog from '../dialog/SettingDialog';
 
 const styles = createStyles({
   root: {
@@ -14,10 +15,6 @@ const styles = createStyles({
   grow: {
     flexGrow: 1,
     fontFamily:"'Source Code Pro', monospace"
-  },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20,
   },
 });
 
@@ -32,9 +29,7 @@ const Bar = (props: Props) => {
           <Typography variant="h5" color="inherit" className={classes.grow}>
             HEATMAN
           </Typography>
-          <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-            <SettingsIcon />
-          </IconButton>
+          <SettingDialog/>
         </Toolbar>
       </AppBar>
     </div>
