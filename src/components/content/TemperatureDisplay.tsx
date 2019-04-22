@@ -24,11 +24,11 @@ const TemperatureDisplay = (props: Props) => {
 
   return (
     <div>
-      <Grid container justify="center" style={{paddingTop:"10%"}}>
+      <Grid container justify="center" style={{paddingTop:10}}>
         <Paper className={classes.root} elevation={1} >
           <Typography className={classes.deg} variant="h3" component="h3">
               35.72 &deg;C
-            </Typography>
+          </Typography>
         </Paper>
       </Grid>
     </div>

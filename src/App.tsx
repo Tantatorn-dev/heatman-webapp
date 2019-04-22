@@ -10,10 +10,10 @@ import TemperatureChart from './components/content/TemperatureChart';
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: "#CA1C1D"
+      main: "#274f5a"
     },
     secondary: {
-      main: "#E5AF70"
+      main: "#82bfbc"
     }
   }
 });

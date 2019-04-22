@@ -1,17 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { XYPlot,XAxis,YAxis,LineSeries } from "react-vis";
-import { CardContent, Card, CardHeader, createStyles, Theme, WithStyles, withStyles } from '@material-ui/core';
+import { XYPlot, XAxis, YAxis, LineSeries,VerticalGridLines,HorizontalGridLines } from "react-vis";
+import { CardContent, Card, createStyles, Theme, WithStyles, withStyles, Typography, Grid } from '@material-ui/core';
 
-const styles =(theme:Theme)=> createStyles({
-    chart:{
-        maxWidth:"40%",
-        paddingTop:15,
+const styles = (theme: Theme) => createStyles({
+    chart: {
+        width: 500,
+        paddingTop: 15,
         margin: theme.spacing.unit,
+    },
+    title: {
+        fontSize: 32,
+    },
+    subtitle:{
+        fontSize:28,
     }
 });
 
-export interface Props extends WithStyles<typeof styles>{};
+export interface Props extends WithStyles<typeof styles> { };
 
 const data = [
     { x: 0, y: 0 },
@@ -26,22 +32,31 @@ const data = [
     { x: 9, y: 5 }
 ];
 
-const TemperatureChart = (props:Props) => {
-    const {classes} = props;
+const TemperatureChart = (props: Props) => {
+    const { classes } = props;
     return (
         <div>
-            <Card className={classes.chart}>
-                <CardHeader>
-
-                </CardHeader>
+            <Grid container justify="center">
+            <Card className={classes.chart} >
                 <CardContent>
-            <XYPlot height={300} width={300}>
-                <XAxis />
-                <YAxis />
-                <LineSeries data={data} />
-            </XYPlot> 
-            </CardContent>
+                    <Typography className={classes.title} gutterBottom>
+                        History
+                    </Typography>
+                    <Typography className={classes.subtitle} color="textSecondary">
+                        Temperature
+                    </Typography>
+                    <Grid container justify="center">
+                    <XYPlot height={300} width={300}>
+                        <XAxis title="Time" />
+                        <YAxis title="Temperature" />
+                        <VerticalGridLines />
+                        <HorizontalGridLines />
+                        <LineSeries data={data} />
+                    </XYPlot>
+                    </Grid>
+                </CardContent>
             </Card>
+            </Grid>
         </div>
     )
 }
