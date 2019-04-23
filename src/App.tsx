@@ -28,7 +28,7 @@ class App extends Component {
         <div>
           <Bar />
           <TemperatureDisplay />
-          <TemperatureChart/>
+          <TemperatureChart />
         </div>
       </MuiThemeProvider>
     );

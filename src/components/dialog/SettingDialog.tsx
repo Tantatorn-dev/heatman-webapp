@@ -11,6 +11,7 @@ const styles = createStyles({
     },
     flex: {
         flex: 1,
+        fontFamily: "'Source Code Pro', monospace"
     },
     menuButton: {
         marginLeft: -12,
@@ -44,7 +45,7 @@ const SettingDialog = (props: Props) => {
                                 <CloseIcon />
                             </IconButton>
                             <Typography variant="h6" color="inherit" className={classes.flex}>
-                                Settings
+                                SETTINGS
                             </Typography>
                         </Toolbar>
                     </AppBar>

@@ -7,8 +7,10 @@ import SwipeableViews from 'react-swipeable-views';
 const styles = (theme: Theme) => createStyles({
     chart: {
         width: 500,
-        paddingTop: 15,
-        margin: theme.spacing.unit,
+        ...theme.mixins.gutters(),
+        marginTop:10,
+        marginBottom:20,
+        paddingBottom: theme.spacing.unit * 2,
     },
     title: {
         fontSize: 32,
@@ -66,7 +68,7 @@ const TemperatureChart = (props: Props) => {
                                 <Grid container justify="center">
                                     <XYPlot height={300} width={300}>
                                         <XAxis title="Time" />
-                                        <YAxis title="Temperature" />
+                                        <YAxis title="Humidity" />
                                         <VerticalGridLines />
                                         <HorizontalGridLines />
                                         <LineSeries data={data} />
@@ -74,10 +76,10 @@ const TemperatureChart = (props: Props) => {
                                 </Grid>
                             </div>
                         </SwipeableViews>
-                            <Tabs value={index} fullWidth onChange={(event,value)=>{setIndex(value)}} >
-                                <Tab label="Temperature" />
-                                <Tab label="Humidity" />
-                            </Tabs>
+                        <Tabs value={index} fullWidth onChange={(event, value) => { setIndex(value) }} >
+                            <Tab label="Temperature" />
+                            <Tab label="Humidity" />
+                        </Tabs>
                     </CardContent>
                 </Card>
             </Grid>
