@@ -1,20 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { XYPlot, XAxis, YAxis, LineSeries,VerticalGridLines,HorizontalGridLines } from "react-vis";
-import { CardContent, Card, createStyles, Theme, WithStyles, withStyles, Typography, Grid } from '@material-ui/core';
+import { XYPlot, XAxis, YAxis, LineSeries, VerticalGridLines, HorizontalGridLines } from "react-vis";
+import { CardContent, Card, createStyles, Theme, WithStyles, withStyles, Typography, Grid, Tabs, Tab } from '@material-ui/core';
 import SwipeableViews from 'react-swipeable-views';
 
 const styles = (theme: Theme) => createStyles({
     chart: {
         width: 500,
-        paddingTop: 15,
-        margin: theme.spacing.unit,
+        ...theme.mixins.gutters(),
+        marginTop:10,
+        marginBottom:20,
+        paddingBottom: theme.spacing.unit * 2,
     },
     title: {
         fontSize: 32,
     },
-    subtitle:{
-        fontSize:28,
+    subtitle: {
+        fontSize: 28,
     }
 });
 
@@ -35,28 +37,51 @@ const data = [
 
 const TemperatureChart = (props: Props) => {
     const { classes } = props;
+    const [index, setIndex] = useState(0);
     return (
         <div>
             <Grid container justify="center">
-            <Card className={classes.chart} >
-                <CardContent>
-                    <Typography className={classes.title} gutterBottom>
-                        History
-                    </Typography>
-                    <Typography className={classes.subtitle} color="textSecondary">
-                        Temperature
-                    </Typography>
-                    <Grid container justify="center">
-                    <XYPlot height={300} width={300}>
-                        <XAxis title="Time" />
-                        <YAxis title="Temperature" />
-                        <VerticalGridLines />
-                        <HorizontalGridLines />
-                        <LineSeries data={data} />
-                    </XYPlot>
-                    </Grid>
-                </CardContent>
-            </Card>
+                <Card className={classes.chart} >
+                    <CardContent>
+                        <Typography className={classes.title} gutterBottom>
+                            History
+                        </Typography>
+                        <SwipeableViews index={index} onChangeIndex={() => { setIndex(index) }}>
+                            <div>
+                                <Typography className={classes.subtitle} color="textSecondary">
+                                    Temperature
+                                </Typography>
+                                <Grid container justify="center">
+                                    <XYPlot height={300} width={300}>
+                                        <XAxis title="Time" />
+                                        <YAxis title="Temperature" />
+                                        <VerticalGridLines />
+                                        <HorizontalGridLines />
+                                        <LineSeries data={data} />
+                                    </XYPlot>
+                                </Grid>
+                            </div>
+                            <div>
+                                <Typography className={classes.subtitle} color="textSecondary">
+                                    Humidity
+                                </Typography>
+                                <Grid container justify="center">
+                                    <XYPlot height={300} width={300}>
+                                        <XAxis title="Time" />
+                                        <YAxis title="Humidity" />
+                                        <VerticalGridLines />
+                                        <HorizontalGridLines />
+                                        <LineSeries data={data} />
+                                    </XYPlot>
+                                </Grid>
+                            </div>
+                        </SwipeableViews>
+                        <Tabs value={index} fullWidth onChange={(event, value) => { setIndex(value) }} >
+                            <Tab label="Temperature" />
+                            <Tab label="Humidity" />
+                        </Tabs>
+                    </CardContent>
+                </Card>
             </Grid>
         </div>
     )
