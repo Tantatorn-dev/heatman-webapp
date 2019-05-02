@@ -18,7 +18,12 @@ const theme = createMuiTheme({
   }
 });
 
+interface Props { }
+
 class App extends Component {
+  constructor(props: Props) {
+    super(props);
+  }
   render() {
     return (
       <MuiThemeProvider theme={theme} >
@@ -26,9 +31,9 @@ class App extends Component {
           <style>{`body { background-color: ${theme.palette.secondary.main} ; }`}</style>
         </Helmet>
         <div>
-          <Bar />
-          <TemperatureDisplay />
-          <TemperatureChart />
+            <Bar />
+            <TemperatureDisplay />
+            <TemperatureChart />
         </div>
       </MuiThemeProvider>
     );
