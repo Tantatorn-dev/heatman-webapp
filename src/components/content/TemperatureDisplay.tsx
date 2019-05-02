@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, createStyles, Theme, WithStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import { Grid, Tabs, Tab } from '@material-ui/core';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
+import axios from "axios";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -29,6 +30,28 @@ export interface Props extends WithStyles<typeof styles> { }
 const TemperatureDisplay = (props: Props) => {
   const { classes } = props;
   const [index, setIndex] = useState(0);
+  const [temperature, setTemperature] = useState(13.0);
+  const [humidity, setHumidity] = useState(75.0);
+  useEffect(() => {
+    setTimeout(() => {
+      axios
+        .get("https://heatman-b390e.firebaseio.com/dht11.json?print=pretty")
+      .then(res => {
+        console.log(res.data.temperature);
+        setTemperature(res.data.temperature);
+      })
+    }, 1000
+    );
+    setTimeout(() => {
+      axios
+        .get("https://heatman-b390e.firebaseio.com/dht11.json?print=pretty")
+      .then(res => {
+        console.log(res.data.humidity);
+        setHumidity(res.data.humidity);
+      })
+    }, 1000
+    );
+  });
   return (
     <div>
       <Grid container justify="center" style={{ paddingTop: 10 }}>
@@ -43,21 +66,21 @@ const TemperatureDisplay = (props: Props) => {
                 Temperature
           </Typography>
               <Typography className={classes.deg} variant="h3" component="h3">
-                35.72 &deg;C
-          </Typography>
+                {temperature}  &deg;C
+                    </Typography>
             </div>
             <div>
               <Typography className={classes.subtitle} color="textSecondary">
                 Humidity
           </Typography>
               <Typography className={classes.deg} variant="h3" component="h3">
-                75 % RH
+                {humidity} % RH
           </Typography>
             </div>
           </AutoPlaySwipeableViews>
         </Paper>
       </Grid>
-    </div>
+    </div >
   );
 }
 
