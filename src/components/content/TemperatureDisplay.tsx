@@ -60,7 +60,9 @@ const TemperatureDisplay = (props: Props) => {
             <Tab label="Temperature" />
             <Tab label="Humidity" />
           </Tabs>
-          <AutoPlaySwipeableViews index={index} onChangeIndex={() => { setIndex(index) }} enableMouseEvents >
+          <AutoPlaySwipeableViews index={index} 
+          onChangeIndex={() => { setIndex(index) }} 
+          enableMouseEvents >
             <div>
               <Typography className={classes.subtitle} color="textSecondary">
                 Temperature
