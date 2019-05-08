@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types';
-import { createStyles, WithStyles, Slide, IconButton, Dialog, AppBar, Toolbar, Typography, List, ListItem, ListItemText, Divider, withStyles, ListItemSecondaryAction, MenuItem, Select, Theme } from '@material-ui/core';
-import CloseIcon from '@material-ui/icons/Close';
+import { createStyles, WithStyles, Slide, IconButton, Dialog, AppBar, Toolbar, Typography, List, ListItem, ListItemText, Divider, withStyles, MenuItem, Select, Theme } from '@material-ui/core';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
-const styles = (theme:Theme) => createStyles({
+const styles = (theme: Theme) => createStyles({
     appBar: {
         position: 'relative',
     },
@@ -24,8 +24,8 @@ const styles = (theme:Theme) => createStyles({
         minWidth: 120,
     },
     select: {
-        marginRight:120,
-        minWidth:50
+        marginRight: 120,
+        minWidth: 50
     },
 });
 
@@ -41,8 +41,8 @@ const SetAlarmLevel = (props: Props) => {
     const [open, setOpen] = useState(false);
     const [openSelectTemperature, setOpenSelectTemperature] = useState(false);
     const [openSelectHumidity, setOpenSelectHumidity] = useState(false);
-    const [temperature, setTemperature] = React.useState('');
-    const [humidity, setHumidity] = React.useState('');
+    const [temperature, setTemperature] = useState(0);
+    const [humidity, setHumidity] = useState(0);
     const { classes } = props;
 
     function handleChangeTemp(event: any) {
@@ -69,12 +69,14 @@ const SetAlarmLevel = (props: Props) => {
         setOpenSelectHumidity(true);
     }
 
-    useEffect(() => {
-        setOpen(props.open);
-    })
-
     return (
         <div>
+            <ListItem button onClick={()=>{setOpen(true)}}>
+                <ListItemText
+                    primary="Set Alarm Level"
+                    secondary="Set dangerous Temperature and Humidity level"
+                />
+            </ListItem>
             <Dialog
                 fullScreen
                 open={open}
@@ -83,8 +85,9 @@ const SetAlarmLevel = (props: Props) => {
                     <Toolbar>
                         <IconButton
                             color="inherit"
+                            onClick={() => { setOpen(false) }}
                             aria-label="Close">
-                            <CloseIcon />
+                            <ArrowBackIcon />
                         </IconButton>
                         <Typography variant="h6"
                             color="inherit"
@@ -98,47 +101,47 @@ const SetAlarmLevel = (props: Props) => {
                         <ListItemText
                             primary="Set dangerous temperature"
                         />
-                            <Select
-                                open={openSelectTemperature}
-                                onChange={handleChangeTemp}
-                                onClose={handleCloseTemp}
-                                onOpen={handleOpenTemp}
-                                value={temperature}
-                                inputProps={{
-                                    name: 'temperature',
-                                    id: 'select-dangerous-temperature',
-                                }}
-                                className={classes.select}
-                            >
-                                <MenuItem value={20}>20</MenuItem>
-                                <MenuItem value={30}>30</MenuItem>
-                                <MenuItem value={40}>40</MenuItem>
-                                <MenuItem value={60}>60</MenuItem>
-                                <MenuItem value={80}>80</MenuItem>
-                                <MenuItem value={100}>100</MenuItem>
-                            </Select>
+                        <Select
+                            open={openSelectTemperature}
+                            onChange={handleChangeTemp}
+                            onClose={handleCloseTemp}
+                            onOpen={handleOpenTemp}
+                            value={temperature}
+                            inputProps={{
+                                name: 'temperature',
+                                id: 'select-dangerous-temperature',
+                            }}
+                            className={classes.select}
+                        >
+                            <MenuItem value={20}>20</MenuItem>
+                            <MenuItem value={30}>30</MenuItem>
+                            <MenuItem value={40}>40</MenuItem>
+                            <MenuItem value={60}>60</MenuItem>
+                            <MenuItem value={80}>80</MenuItem>
+                            <MenuItem value={100}>100</MenuItem>
+                        </Select>
                     </ListItem>
                     <ListItem button>
                         <ListItemText
                             primary="Set dangerous humidity"
                         />
-                            <Select
-                                open={openSelectHumidity}
-                                onChange={handleChangeHumid}
-                                onClose={handleCloseHumid}
-                                onOpen={handleOpenHumid}
-                                value={humidity}
-                                inputProps={{
-                                    name: 'humidity',
-                                    id: 'select-dangerous-humidity',
-                                }}
-                                className={classes.select}
-                            >
-                                <MenuItem value={25}>25%</MenuItem>
-                                <MenuItem value={50}>50%</MenuItem>
-                                <MenuItem value={75}>75%</MenuItem>
-                                <MenuItem value={100}>100%</MenuItem>
-                            </Select>
+                        <Select
+                            open={openSelectHumidity}
+                            onChange={handleChangeHumid}
+                            onClose={handleCloseHumid}
+                            onOpen={handleOpenHumid}
+                            value={humidity}
+                            inputProps={{
+                                name: 'humidity',
+                                id: 'select-dangerous-humidity',
+                            }}
+                            className={classes.select}
+                        >
+                            <MenuItem value={25}>25%</MenuItem>
+                            <MenuItem value={50}>50%</MenuItem>
+                            <MenuItem value={75}>75%</MenuItem>
+                            <MenuItem value={100}>100%</MenuItem>
+                        </Select>
                     </ListItem>
                     <Divider />
                 </List>

@@ -5,6 +5,7 @@ import { Dialog, AppBar, Toolbar, IconButton, Typography, List, ListItem, ListIt
 import SettingsIcon from '@material-ui/icons/Settings';
 import CloseIcon from '@material-ui/icons/Close';
 import SetAlarmLevel from "./SetAlarmLevel";
+import EditTheSensors from "./EditTheSensors";
 
 const styles = createStyles({
     appBar: {
@@ -28,15 +29,14 @@ export interface Props extends WithStyles<typeof styles> { };
 
 const SettingDialog = (props: Props) => {
     const [open, setOpen] = useState(false);
-    const [openSetAlarmLevel,setOpenSetAlarmLevel] = useState(false);
     const { classes } = props;
     return (
         <div>
             <div>
-                <IconButton className={classes.menuButton} 
-                onClick={() => { setOpen(true) }} 
-                color="inherit" 
-                aria-label="Menu">
+                <IconButton className={classes.menuButton}
+                    onClick={() => { setOpen(true) }}
+                    color="inherit"
+                    aria-label="Menu">
                     <SettingsIcon />
                 </IconButton>
                 <Dialog
@@ -46,40 +46,32 @@ const SettingDialog = (props: Props) => {
                 >
                     <AppBar className={classes.appBar}>
                         <Toolbar>
-                            <IconButton 
-                            color="inherit" 
-                            onClick={() => { setOpen(false) }} 
-                            aria-label="Close">
+                            <IconButton
+                                color="inherit"
+                                onClick={() => { setOpen(false) }}
+                                aria-label="Close">
                                 <CloseIcon />
                             </IconButton>
-                            <Typography variant="h6" 
-                            color="inherit" 
-                            className={classes.flex}>
+                            <Typography variant="h6"
+                                color="inherit"
+                                className={classes.flex}>
                                 SETTINGS
                             </Typography>
                         </Toolbar>
                     </AppBar>
                     <List>
                         <ListItem button>
-                            <ListItemText 
-                            primary="Test Alarm System" 
-                            secondary="Test your LED alarm and Siren" />
+                            <ListItemText
+                                primary="Test Alarm System"
+                                secondary="Test your LED alarm and Siren" />
                         </ListItem>
                         <Divider />
-                        <ListItem button onClick={()=>{setOpenSetAlarmLevel(true)}}>
-                            <ListItemText 
-                            primary="Set Alarm Level" 
-                            secondary="Set dangerous Temperature and Humidity level"
-                             />
-                        </ListItem>
-                        <ListItem button>
-                            <ListItemText 
-                            primary="Edit the sensors" 
-                            secondary="Enable and disable sensors" />
-                        </ListItem>
+                        <SetAlarmLevel />
+                        <Divider />
+                        <EditTheSensors />
+                        <Divider />
                     </List>
                 </Dialog>
-                    <SetAlarmLevel open={openSetAlarmLevel}/>
             </div>
         </div>
     );
