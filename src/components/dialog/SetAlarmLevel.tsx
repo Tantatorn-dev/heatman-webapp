@@ -97,7 +97,7 @@ const SetAlarmLevel = (props: Props) => {
                     </Toolbar>
                 </AppBar>
                 <List>
-                    <ListItem button>
+                    <ListItem button disableRipple disableTouchRipple>
                         <ListItemText
                             primary="Set dangerous temperature"
                         />
@@ -121,7 +121,7 @@ const SetAlarmLevel = (props: Props) => {
                             <MenuItem value={100}>100</MenuItem>
                         </Select>
                     </ListItem>
-                    <ListItem button>
+                    <ListItem button disableRipple disableTouchRipple>
                         <ListItemText
                             primary="Set dangerous humidity"
                         />

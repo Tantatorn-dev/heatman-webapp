@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types';
 import { createStyles, WithStyles, Slide, IconButton, Dialog, AppBar, Toolbar, Typography, List, ListItem, ListItemText, Divider, withStyles, MenuItem, Select, Theme, Switch } from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import { useGlobal } from "reactn";
 
 const styles = (theme: Theme) => createStyles({
     appBar: {
@@ -39,11 +40,7 @@ export interface Props extends WithStyles<typeof styles> {
 
 const EditTheSensors = (props: Props) => {
     const [open, setOpen] = useState(false);
-    const [state, setState] = useState({
-        DHT11_1: false,
-        DHT11_2: false,
-        DHT11_avg: false
-    });
+    const [state, setState] = useGlobal('state');
 
     const { classes } = props;
 
