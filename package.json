@@ -20,6 +20,7 @@
     "react-scripts": "2.1.8",
     "react-swipeable-views": "^0.13.1",
     "react-vis": "^1.11.7",
+    "reactn": "^1.0.0",
     "typescript": "3.4.3"
   },
   "scripts": {

@@ -3,6 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { setGlobal } from "reactn";
+
+setGlobal({
+    state: {
+        DHT11_1: true,
+        DHT11_2: true,
+        DHT11_avg: true
+    },
+});
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
