@@ -6,6 +6,7 @@ import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 import TemperatureDisplay from './components/content/TemperatureDisplay';
 import { Helmet } from "react-helmet";
 import ControlAlarm from './components/content/ControlAlarm';
+import ControlFan from './components/content/ControlFan';
 
 const theme = createMuiTheme({
   palette: {
@@ -33,6 +34,7 @@ class App extends Component {
         <div>
             <Bar />
             <TemperatureDisplay />
+            <ControlFan />
             <ControlAlarm />
         </div>
       </MuiThemeProvider>

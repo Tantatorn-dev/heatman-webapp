@@ -6,7 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import { Grid } from '@material-ui/core';
 import axios from "axios";
 import Button from '@material-ui/core/Button';
-import { async } from 'q';
 
 const styles = (theme: Theme) => createStyles({
     root: {
@@ -14,6 +13,7 @@ const styles = (theme: Theme) => createStyles({
         paddingTop: theme.spacing.unit * 2,
         paddingBottom: theme.spacing.unit * 2,
         width: 500,
+        marginBottom:30,
     },
     deg: {
         fontFamily: '"orbitron", sans-serif'
