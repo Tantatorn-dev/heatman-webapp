@@ -78,6 +78,8 @@ const TemperatureDisplay = (props: Props) => {
     }, 1000
     );
   });
+  let avgTemperature = Number.parseFloat(((temperature_1 + temperature_2) / 2).toString()).toFixed(1);
+  let avgHumidity = Number.parseFloat(((humidity_1 +  humidity_2) / 2).toString()).toFixed(1);
   return (
     <div>
       {
@@ -175,7 +177,7 @@ const TemperatureDisplay = (props: Props) => {
                   Temperature
           </Typography>
                 <Typography className={classes.deg} variant="h3" component="h3">
-                  {(temperature_1 + temperature_2) / 2}  &deg;C
+                  {avgTemperature}  &deg;C
                     </Typography>
               </div>
               <div>
@@ -183,7 +185,7 @@ const TemperatureDisplay = (props: Props) => {
                   Humidity
           </Typography>
                 <Typography className={classes.deg} variant="h3" component="h3">
-                  {(humidity_1 + humidity_2) / 2} % RH
+                  {avgHumidity} % RH
           </Typography>
               </div>
             </AutoPlaySwipeableViews>
