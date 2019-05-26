@@ -30,10 +30,6 @@ const styles = (theme: Theme) => createStyles({
     },
 });
 
-function Transition(props: Props) {
-    return <Slide direction="up" {...props} />;
-}
-
 export interface Props extends WithStyles<typeof styles> {
     open: boolean
 };
