@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types';
 import { createStyles, WithStyles, Slide, IconButton, Dialog, AppBar, Toolbar, Typography, List, ListItem, ListItemText, Divider, withStyles, MenuItem, Select, Theme } from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import { useGlobal } from 'reactn';
 
 const styles = (theme: Theme) => createStyles({
     appBar: {
@@ -29,10 +30,6 @@ const styles = (theme: Theme) => createStyles({
     },
 });
 
-function Transition(props: Props) {
-    return <Slide direction="up" {...props} />;
-}
-
 export interface Props extends WithStyles<typeof styles> {
     open: boolean
 };
@@ -41,8 +38,8 @@ const SetAlarmLevel = (props: Props) => {
     const [open, setOpen] = useState(false);
     const [openSelectTemperature, setOpenSelectTemperature] = useState(false);
     const [openSelectHumidity, setOpenSelectHumidity] = useState(false);
-    const [temperature, setTemperature] = useState(0);
-    const [humidity, setHumidity] = useState(0);
+    const [temperature, setTemperature] = useGlobal('dangerousTemperature');
+    const [humidity, setHumidity] = useGlobal('dangerousHumidity');
     const { classes } = props;
 
     function handleChangeTemp(event: any) {

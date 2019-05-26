@@ -11,7 +11,10 @@ setGlobal({
         DHT11_2: true,
         DHT11_avg: true
     },
-    unit:"Celsius"
+    unit:"Celsius",
+    dangerousTemperature:20,
+    dangerousHumidity:25,
+    dangerous:false
 });
 
 ReactDOM.render(<App />, document.getElementById('root'));

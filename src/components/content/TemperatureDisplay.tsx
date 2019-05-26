@@ -36,10 +36,10 @@ const TemperatureDisplay = (props: Props) => {
     index2: 0,
     index3: 0
   });
-  const [temperature_1, setTemperature_1] = useState(13.0);
-  const [humidity_1, setHumidity_1] = useState(75.0);
-  const [temperature_2, setTemperature_2] = useState(13.0);
-  const [humidity_2, setHumidity_2] = useState(75.0);
+  const [temperature_1, setTemperature_1] = useState(0.0);
+  const [humidity_1, setHumidity_1] = useState(0.0);
+  const [temperature_2, setTemperature_2] = useState(0.0);
+  const [humidity_2, setHumidity_2] = useState(0.0);
   useEffect(() => {
     setTimeout(() => {
       axios
