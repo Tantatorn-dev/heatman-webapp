@@ -11,6 +11,7 @@ setGlobal({
         DHT11_2: true,
         DHT11_avg: true
     },
+    unit:"Celsius"
 });
 
 ReactDOM.render(<App />, document.getElementById('root'));

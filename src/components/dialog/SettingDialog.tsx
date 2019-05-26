@@ -6,6 +6,7 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import CloseIcon from '@material-ui/icons/Close';
 import SetAlarmLevel from "./SetAlarmLevel";
 import EditTheSensors from "./EditTheSensors";
+import ChangeUnit from "./ChangeUnit";
 
 const styles = createStyles({
     appBar: {
@@ -60,11 +61,7 @@ const SettingDialog = (props: Props) => {
                         </Toolbar>
                     </AppBar>
                     <List>
-                        <ListItem button>
-                            <ListItemText
-                                primary="Test Alarm System"
-                                secondary="Test your LED alarm and Siren" />
-                        </ListItem>
+                        <ChangeUnit />
                         <Divider />
                         <SetAlarmLevel />
                         <Divider />

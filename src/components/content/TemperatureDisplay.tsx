@@ -30,7 +30,7 @@ export interface Props extends WithStyles<typeof styles> { }
 
 const TemperatureDisplay = (props: Props) => {
   const { classes } = props;
-  const [global,setGlobal] = useGlobal();
+  const [global, setGlobal] = useGlobal();
   const [index, setIndex] = useState({
     index1: 0,
     index2: 0,
@@ -78,8 +78,20 @@ const TemperatureDisplay = (props: Props) => {
     }, 1000
     );
   });
+
   let avgTemperature = Number.parseFloat(((temperature_1 + temperature_2) / 2).toString()).toFixed(1);
-  let avgHumidity = Number.parseFloat(((humidity_1 +  humidity_2) / 2).toString()).toFixed(1);
+  let avgHumidity = Number.parseFloat(((humidity_1 + humidity_2) / 2).toString()).toFixed(1);
+
+  function celsiusToFahrenheit(celsius:number) {
+    return celsius * 9 / 5 + 32;
+  }
+
+  function celsiusToKelvin(celsius:number) {
+    return celsius +273;
+  }
+
+  let unit = global.unit;
+
   return (
     <div>
       {
@@ -100,11 +112,13 @@ const TemperatureDisplay = (props: Props) => {
               enableMouseEvents >
               <div>
                 <Typography className={classes.subtitle} color="textSecondary">
-                  Temperature  
+                  Temperature
           </Typography>
                 <Typography className={classes.deg} variant="h3" component="h3">
-                  {temperature_1}  &deg;C 
-                    </Typography>
+                  {unit == "Celsius" ?temperature_1: unit == "Kelvin"? 
+                  celsiusToKelvin(temperature_1):celsiusToFahrenheit(temperature_1)}  
+                  {unit=="Celsius"?" °C":unit=="Kelvin"?" K":" °F"}
+                </Typography>
               </div>
               <div>
                 <Typography className={classes.subtitle} color="textSecondary">
@@ -140,7 +154,9 @@ const TemperatureDisplay = (props: Props) => {
                   Temperature
           </Typography>
                 <Typography className={classes.deg} variant="h3" component="h3">
-                  {temperature_2}  &deg;C
+                  {unit == "Celsius" ?temperature_2: unit == "Kelvin"? 
+                  celsiusToKelvin(temperature_2):celsiusToFahrenheit(temperature_2)}  
+                  {unit=="Celsius"?" °C":unit=="Kelvin"?" K":" °F"}
                     </Typography>
               </div>
               <div>
@@ -177,7 +193,9 @@ const TemperatureDisplay = (props: Props) => {
                   Temperature
           </Typography>
                 <Typography className={classes.deg} variant="h3" component="h3">
-                  {avgTemperature}  &deg;C
+                  {unit == "Celsius" ?avgTemperature: unit == "Kelvin"? 
+                  celsiusToKelvin(Number.parseFloat(avgTemperature)):celsiusToFahrenheit(Number.parseFloat(avgTemperature))}  
+                  {unit=="Celsius"?" °C":unit=="Kelvin"?" K":" °F"}
                     </Typography>
               </div>
               <div>
